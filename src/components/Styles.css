@@ -1,6 +1,6 @@
 .input{
     display: flex;
-    width: 90%;
+    width: 95%;
     position: relative;
     align-items: center;
 }
@@ -45,9 +45,11 @@ box-shadow:  0 0 5px black;
 }
 .todos{
     display: flex;
-    justify-content: space-evenly;
-    width: 90%;
-    flex-wrap: wrap;
+    width: 47.5%;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: rgb(50, 195, 205);
 }
 
 
@@ -56,14 +58,14 @@ box-shadow:  0 0 5px black;
 
 
 .container {
+  display: flex;
     width: 95%;
-    display: flex;
     margin-top: 10px;
     justify-content: space-between;
     align-items: flex-start;
   }
   
-  /* .todos {
+  .todos {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -71,7 +73,7 @@ box-shadow:  0 0 5px black;
     padding: 15px;
     background-color: rgb(50, 195, 205);
   }
-   */
+  
   .dragactive {
     background-color: rgb(0, 221, 236);
   }
@@ -84,14 +86,12 @@ box-shadow:  0 0 5px black;
     background-color: rgb(235, 103, 80);
   }
   
-  .todos__heading {
+  .todos_heading {
     font-size: 30px;
-
     color: white;
   }
   
   .todos_single {
-    width: 29.5%;
     display: flex;
     border-radius: 5px;
     padding: 20px;
@@ -126,11 +126,7 @@ box-shadow:  0 0 5px black;
   
   
   
-  @media (max-width: 1200px) {
-    .todos_single {
-      width: 40%;
-    }
-  }
+ 
   @media (max-width: 1100px) {
     .todos {
       width: 45%;
@@ -145,7 +141,9 @@ box-shadow:  0 0 5px black;
       width: 95%;
       margin-bottom: 10px;
     }
-    .todos_single{
-        width: 100%;
+    .container{
+      width: 95%;
+      flex-direction: column;
     }
+ 
   } 
