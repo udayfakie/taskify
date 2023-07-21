@@ -74,13 +74,7 @@ box-shadow:  0 0 5px black;
     background-color: rgb(50, 195, 205);
   }
   
-  .dragactive {
-    background-color: rgb(0, 221, 236);
-  }
   
-  .dragcomplete {
-    background-color: rgb(255, 38, 0);
-  }
   
   .remove {
     background-color: rgb(235, 103, 80);
@@ -119,9 +113,6 @@ box-shadow:  0 0 5px black;
     outline: none;
   }
  
-  .drag {
-    box-shadow: 0 0 20px black;
-  }
   
   
   
@@ -145,5 +136,15 @@ box-shadow:  0 0 5px black;
       width: 95%;
       flex-direction: column;
     }
- 
+    
   } 
+  .dragactive {
+    background-color: rgb(0, 221, 236);
+  }
+  
+  .dragcomplete {
+    background-color: rgb(255, 38, 0);
+  }
+  .drag {
+    box-shadow: 0 0 20px black;
+  }
