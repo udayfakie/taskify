@@ -8,24 +8,21 @@ interface Props {
   completedTodos: Todo[];
   setTodo: React.Dispatch<React.SetStateAction<string>>;
   handleAdd: (e: React.FormEvent) => void;
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
 const InputField = ({ todo, setTodo, handleAdd }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
-
   const createTodo = () => {
     axios
       .post(`${SERVER_URL}/createdTodo`, {
         todo: todo,
       })
-      .then((res) => {
-        console.log(res.data);
-      })
+      .then((res) => {})
       .catch((error) => {
         console.error("Error creating todo:", error);
       });
   };
-
   return (
     <>
       <form
@@ -43,11 +40,10 @@ const InputField = ({ todo, setTodo, handleAdd }: Props) => {
           value={todo}
           onChange={(e) => setTodo(e.target.value)}
         />
-
-        <button onClick={createTodo} className="input_submit">Go</button>
-      
+        <button onClick={createTodo} className="input_submit">
+          Go
+        </button>
       </form>
-      
     </>
   );
 };
