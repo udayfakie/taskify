@@ -5,7 +5,6 @@ import NavBar from "./navbar/NavBar";
 import Panda from "./components/screens/Panda";
 import Home from "./components/screens/Home";
 import { Todo } from "./model";
-import TodoList from "./components/TodoList";
 
 const App: React.FC = () => {
   const todos: Todo[] = [{ _id: 1, todo: "Buy groceries", isDone: false }];
