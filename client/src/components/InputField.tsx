@@ -2,8 +2,7 @@ import React, { useRef } from "react";
 import "./Styles.css";
 import axios from "axios";
 import { Todo } from "../model";
-import Home from "./screens/Home";
-
+import { SERVER_URL } from "../utils/config.js";
 interface Props {
   todo: string;
   completedTodos: Todo[];
@@ -16,7 +15,7 @@ const InputField = ({ todo, setTodo, handleAdd }: Props) => {
 
   const createTodo = () => {
     axios
-      .post("http://localhost:3001/createdTodo", {
+      .post(`${SERVER_URL}/createdTodo`, {
         todo: todo,
       })
       .then((res) => {
