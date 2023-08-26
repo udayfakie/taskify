@@ -19,41 +19,49 @@ const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
   const handleDone = (id: number) => {
     setTodos(
       todos.map((todo) =>
-        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
+        todo._id === id ? { ...todo, isDone: !todo.isDone } : todo
       )
     );
   };
-
   const handleDelete = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos(todos.filter((todo) => todo._id !== id));
+    axios
+      .delete(`http://localhost:3001/${id}`)
+      .then((response) => {
+        console.log("Task deleted successfully:", response);
+      })
+      .catch((error) => {
+        console.error("Error deleting task:", error);
+      });
+      console.log(todos);
+      console.log(todo._id);
+      
   };
-
   const handleEdit = async (e: React.FormEvent, id: number) => {
     e.preventDefault();
     setTodos(
-      todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
+      todos.map((todo) =>
+        todo._id === id ? { ...todo, todo: editTodo } : todo
+      )
     );
     setEdit(false);
-
     try {
       await axios.post("/todos", { id: id, text: editTodo }); // Adjust the endpoint as needed
     } catch (error) {
       console.error("Error saving todo:", error);
     }
-
   };
-
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     inputRef.current?.focus();
   }, [edit]);
 
   return (
-    <Draggable draggableId={todo.id.toString()} index={index}>
+    <Draggable draggableId={todo._id.toString()} index={index}>
       {(provided, snapshot) => (
         <form
           className={`todos_single ${snapshot.isDragging ? "drag" : ""}`}
-          onSubmit={(e) => handleEdit(e, todo.id)}
+          onSubmit={(e) => handleEdit(e, todo._id)}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
@@ -82,11 +90,11 @@ const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
             </span>
 
             <span className="icon">
-              <AiFillDelete onClick={() => handleDelete(todo.id)} />
+              <AiFillDelete onClick={() => handleDelete(todo._id)} />
             </span>
 
             <span className="icon">
-              <MdOutlineDone onClick={() => handleDone(todo.id)} />
+              <MdOutlineDone onClick={() => handleDone(todo._id)} />
             </span>
           </div>
         </form>

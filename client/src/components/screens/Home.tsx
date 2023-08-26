@@ -1,14 +1,21 @@
 import React from "react";
 import { styled } from "styled-components";
+import { Todo } from "../../model";
 
-interface HomeProps {
-  todo: string;
+interface Props {
+  todos: Todo[];
 }
 
-
-const Home: React.FC<HomeProps> = ({ todo }) => {
-  return <Container>hgshsghgfhgfh</Container>;
+const Home: React.FC<Props> = ({ todos }) => {
+  return (
+    <Container>
+      {todos.map(todo => (
+        <div key={todo._id}>{todo.todo}</div>
+      ))}
+    </Container>
+  );
 };
+
 
 export default Home;
 
