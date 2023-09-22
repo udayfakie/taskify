@@ -18,7 +18,9 @@ const InputField = ({ todo, setTodo, handleAdd }: Props) => {
       .post(`${SERVER_URL}/createdTodo`, {
         todo: todo,
       })
-      .then((res) => {})
+      .then((newToDo) => {
+        // console.log(newToDo);
+      })
       .catch((error) => {
         console.error("Error creating todo:", error);
       });

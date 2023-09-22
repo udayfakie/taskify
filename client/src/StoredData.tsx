@@ -25,13 +25,24 @@ const StoredData: React.FC = () => {
   useEffect(() => {
     localStorage.setItem("completedTodos", JSON.stringify(completedTodos));
   }, [completedTodos]);
+
+  /**
+   * Represents a book.
+   * @param {string} title - The title of the book.
+   */
   const handleAdd = (e: React.FormEvent) => {
+    // console.log(e);
     e.preventDefault();
     if (todo) {
-      setTodos([...todos, { _id: Date.now(), todo, isDone: false }]);
+      setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
       setTodo("");
     }
   };
+
+  /**
+   * Represents a book.
+   * @constructor
+   */
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result;
     if (!destination) return;

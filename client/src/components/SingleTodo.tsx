@@ -5,6 +5,8 @@ import { MdOutlineDone } from "react-icons/md";
 import "./Styles.css";
 import { Draggable } from "react-beautiful-dnd";
 import axios from "axios";
+import { SERVER_URL } from "../utils/config.js";
+
 
 type Props = {
   index: number;
@@ -16,32 +18,33 @@ type Props = {
 const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.todo);
+
   const handleDone = (id: number) => {
     setTodos(
       todos.map((todo) =>
-        todo._id === id ? { ...todo, isDone: !todo.isDone } : todo
+        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
       )
     );
   };
+
   const handleDelete = (id: number) => {
-    setTodos(todos.filter((todo) => todo._id !== id));
+    setTodos(todos.filter((todo) => todo.id !== id));
     axios
-      .delete(`http://localhost:3001/${id}`)
+      .delete(`${SERVER_URL}/${id}`)
       .then((response) => {
         console.log("Task deleted successfully:", response);
       })
       .catch((error) => {
         console.error("Error deleting task:", error);
       });
-      console.log(todos);
-      console.log(todo._id);
+      // console.log(todo.id);
       
   };
   const handleEdit = async (e: React.FormEvent, id: number) => {
     e.preventDefault();
     setTodos(
       todos.map((todo) =>
-        todo._id === id ? { ...todo, todo: editTodo } : todo
+        todo.id === id ? { ...todo, todo: editTodo } : todo
       )
     );
     setEdit(false);
@@ -57,11 +60,11 @@ const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
   }, [edit]);
 
   return (
-    <Draggable draggableId={todo._id.toString()} index={index}>
+    <Draggable draggableId={todo.id.toString()} index={index}>
       {(provided, snapshot) => (
         <form
           className={`todos_single ${snapshot.isDragging ? "drag" : ""}`}
-          onSubmit={(e) => handleEdit(e, todo._id)}
+          onSubmit={(e) => handleEdit(e, todo.id)}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
@@ -90,11 +93,11 @@ const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
             </span>
 
             <span className="icon">
-              <AiFillDelete onClick={() => handleDelete(todo._id)} />
+              <AiFillDelete onClick={() => handleDelete(todo.id)} />
             </span>
 
             <span className="icon">
-              <MdOutlineDone onClick={() => handleDone(todo._id)} />
+              <MdOutlineDone onClick={() => handleDone(todo.id)} />
             </span>
           </div>
         </form>

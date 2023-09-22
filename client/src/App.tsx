@@ -7,15 +7,16 @@ import Home from "./components/screens/Home";
 import { Todo } from "./model";
 
 const App: React.FC = () => {
-  const todos: Todo[] = [{ _id: 1, todo: "Buy groceries", isDone: false }];
+  const todos: Todo[] = [{ id: 1, todo: "Buy groceries", isDone: false }];
   return (
     <Router>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home todos={todos} />} />
+      <StoredData/>
+      {/* <NavBar />  */}
+      {/* <Routes> */}
+        {/* <Route path="/" element={<Home todos={todos} />} /> 
         <Route path="/todo" element={<StoredData />} />
-        <Route path="/panda" element={<Panda />} />
-      </Routes>
+        <Route path="/panda" element={<Panda />} /> 
+      </Routes> */}
     </Router>
   );
 };
