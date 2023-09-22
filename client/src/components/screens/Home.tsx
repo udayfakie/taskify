@@ -10,7 +10,7 @@ const Home: React.FC<Props> = ({ todos }) => {
   return (
     <Container>
       {todos.map(todo => (
-        <div key={todo._id}>{todo.todo}</div>
+        <div key={todo.id}>{todo.todo}</div>
       ))}
     </Container>
   );

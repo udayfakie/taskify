@@ -40,18 +40,18 @@ app.post("/createdTodo", async (req, res) => {
   const newTodo = new Todo({ title: createTodo });
   await newTodo.save();
   res.json(newTodo);
-  console.log(createTodo);
+  console.log();
 });
-app.delete('/:_id', async (req, res) => {
+app.delete("/:id", async (req, res) => {
   const todoId = req.params.id;
+  console.log(todoId);
   try {
     await Todo.findByIdAndDelete(todoId);
-    res.status(204).send(); 
+    res.status(204).send("hello");
   } catch (error) {
-    console.error('Error deleting todo:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error("Error deleting todo:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
- console.log(todoId);
 });
 
 app.listen(port, () => {

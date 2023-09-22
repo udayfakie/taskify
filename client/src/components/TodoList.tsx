@@ -32,7 +32,7 @@ const TodoList: React.FC<Props> = ({
                 index={index}
                 todo={todo}
                 todos={todos}
-                key={todo._id}
+                key={todo.id}
                 setTodos={setTodos}
               />
             ))}
@@ -41,7 +41,7 @@ const TodoList: React.FC<Props> = ({
         )}
       </Droppable>
 
-      {/* <Droppable droppableId="TodosRemove">
+      <Droppable droppableId="TodosRemove">
         {(provided,snapshot) => (
           <div
             className={`todos remove ${snapshot.isDraggingOver ? "dragcomplete" : ""}`}
@@ -61,7 +61,7 @@ const TodoList: React.FC<Props> = ({
             {provided.placeholder}
           </div>
         )}
-      </Droppable> */}
+      </Droppable>
     </div>
   );
 };
